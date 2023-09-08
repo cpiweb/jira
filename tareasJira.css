@@ -1,7 +1,37 @@
 * {
-    margin-left: 10px;
+    margin: 0px;
+    padding: 0px;
+}
+
+h2 {
+    text-align: center;
+}
+
+.contenedor_flex {
+    display: flex;
 }
 
 .div_form {
     display: inline-block;
+    padding-left: 20px;
+}
+
+.headers:hover {
+    color: blue;
+}
+
+.key_class:hover {
+    color: blue;
+}
+
+#div_show {
+    width: 80%;
+    height: 80%;
+    background-color: beige;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    border: 2px black solid;
+    border-radius: 20px;
+    padding: 10px;
 }

@@ -3,6 +3,9 @@ const BASE_URL="https://cpiweb.pythonanywhere.com/"
 let pshow1= document.getElementById("p_show1")
 pshow1.style.display= "None"
 
+let divshow= document.getElementById("div_show")
+divshow.style.display= "None"
+
 function buscar_tareas(){
 
     let stream1= document.getElementById("stream1").checked
@@ -64,22 +67,28 @@ function mostrar (issues){
         let th1 = document.createElement("th");
         th1.innerHTML = col[i];
         th1.setAttribute ("onclick", `sortTable(${i})`)
+        th1.setAttribute ("class", "headers")
         tr1.appendChild(th1);
     }
-    let th1 = document.createElement("th");
-    th1.innerHTML = "Acción";
-    tr1.appendChild(th1);
+
+//    let th1 = document.createElement("th");
+//    th1.innerHTML = "Acción";
+//    tr1.appendChild(th1);
 
     // agregar datos del JSON como filas
     for (let i = 0; i < issues.issues.length; i++) {
 
         tr1 = table1.insertRow(-1);
-        tr1.insertCell(-1).innerHTML = issues.issues[i].key
+        let celda = tr1.insertCell(-1)
+        celda.innerHTML = issues.issues[i].key
+        celda.setAttribute("id",`${issues.issues[i].key}`)
+        celda.setAttribute("class","key_class")
+        celda.setAttribute("onclick","obtenerIssue(this.id)")
         tr1.insertCell(-1).innerHTML = issues.issues[i].fields.summary
 //        tr1.insertCell(-1).innerHTML = issues.issues[i].fields.issuetype.name
         tr1.insertCell(-1).innerHTML = issues.issues[i].fields.customfield_13402
         tr1.insertCell(-1).innerHTML = issues.issues[i].fields.status.name
-        tr1.insertCell(-1).innerHTML ='<button id="'+issues.issues[i].key+'" class="btn btn-primary" onclick="seleccionar_contratista(this.id)">Seleccionar</button>'
+//        tr1.insertCell(-1).innerHTML ='<button id="'+issues.issues[i].key+'" class="btn btn-primary" onclick="seleccionar_contratista(this.id)">Seleccionar</button>'
     }
 
     // sumar la tabla creada al contenedor
@@ -87,6 +96,29 @@ function mostrar (issues){
     pshow1.appendChild(table1);
     pshow1.style.display= "block"
 
+}
+
+function obtenerIssue(issue) {
+
+    const END_POINT = "getIssue/"+issue
+
+    fetch(BASE_URL+END_POINT)
+    .then(response => response.json())  // convertir a json
+    .then(json => mostrarIssue(json))    //imprimir los datos en la consola
+    .catch(err => alert('Solicitud fallida', err)); // Capturar errores}
+
+}
+
+function mostrarIssue (issue){
+
+    let divshow= document.getElementById("div_show")
+    divshow.style.display= "block"
+
+    let showKey= document.getElementById("show_key")
+    showKey.innerHTML = issue.key
+
+    let showSummary= document.getElementById("show_summary")
+    showSummary.innerHTML = issue.fields.summary
 }
 
 function sortTable(n) {

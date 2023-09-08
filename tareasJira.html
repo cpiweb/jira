@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Tareas Jira</title>
     <link rel="stylesheet" href="./tareasJira.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
 <body>
 
     <h2>Navegador de Tareas Jira</h2>
-    <div>
+    <div class="contenedor_flex">
         <div class="div_form">
             <h4>Filtrar por Stream</h4>
             <input type="checkbox" id="stream1" name="stream1">
@@ -49,6 +49,23 @@
     </div>
     <div class="div_tabla">
         <p id="p_show1"></p>
+    </div>
+
+    <div id="div_show">
+        <span id="show_key"></span><span id="show_summary"></span>
+        <p>Informador: </p>
+        <p>Responsable:</p>
+
+        <p>Fecha Creación:</p>
+        <p>Fecha Necesidad:</p>
+        <p>Fecha Propuesta:</p>
+        <p>Fecha Fin:</p>
+
+        <p>Edificio:</p>
+        <p>PEP:</p>
+
+        <p>Epica:</p>
+        <p>Subtareas:</p>
     </div>
 
     <script src="./tareasJira.js"></script>
